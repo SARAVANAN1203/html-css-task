@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial scale=1.0" />
+        <title> Customer Experience Survey </title>
+        <style>
+            :root{
+                --access:#e29b5a;
+                --muted:#f3f3f3;
+                --border:#ddd;
+                --text:#222;
+                --radius:6px;
+                --gap:18px;
+                font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helsvetica Neue",Arial;
+            }
+            body{
+                margin: 20px;
+                color: var(--text);
+                background: white;
+            }
+            .container{
+                max-width: 900px;
+                margin: 0 auto;
+                border: 1px solid var(--border);
+                padding: 22px;
+                box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+            }
+
+            h1{
+                font-size: 20px;
+                margin: 0 0 18px 0;
+            }
+            label.required::after{
+               content : "*";
+               color: #c0392b
+            }
+
+            .row{
+                display: flex;
+                gap:12px;
+                align-items:flex-start;
+                margin-bottom: 14px;
+            }
+
+            .col{
+                flex:1;
+                min-width: 0;
+            }
+            input[type="text"],
+            input[type="email"], 
+            textarea{
+                
+                box-sizing: border-box;
+                width:100%;
+                padding: 10px 12px;
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                background: white;
+                font-size: 14px;
+            }
+
+            .name-row  .col:first-child{
+                flex :0 0 62%
+            }
+
+            .name-row  .col:last-child{
+                flex:0 0 34%
+            }
+
+            .field-help{
+                font-size:12px;
+                color: #666;
+                margin-top: 6px;
+            }
+
+
+            .stars{
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin: 6px 0 18px 0;
+            }
+
+            .star-rating{
+                display: inline-block;
+                unicode-bidi: bidi-override;
+                direction: rtl;
+                font-size: 26px;
+            }
+
+            .star-rating input{
+                display: none;
+            }
+
+            .star-rating label{
+                display: inline-block;
+                cursor: pointer;
+                color:#ddd;
+                padding: 04px;
+                user-select:none;
+            }
+
+            .star-rating input:checked ~ label,.star-rating label:hover,.star-rating label:hover ~ label{
+                color:var(--accent);
+            }
+
+            .matrix{
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 18px;
+                border: 1px solid transparent;
+            }
+
+            .matrix  .header{
+                display: grid;
+                grid-template-columns: 1fr repeat(5,120px);
+                gap: 8px;
+                align-items: center;
+                padding: 12px 12px;
+                background: transparent;
+                font-weight: 600;
+                font-size: 14px;
+                color: #555;
+
+            }
+
+            .matrix  ,row{
+                display: grid;
+                grid-template-columns: 1fr repeat(5,120px);
+                align-items: center;
+                gap: 8px;
+                padding: 12px;
+                background: linear-gradient(#fafafa,#f6f6f6);
+                border-top: 1px solid rgba(0,0,0,0.03);
+
+            }
+
+            .matrix  .row:nth-child(odd){
+                background: linear-gradient(#fff,#fbfbfb);
+            }
+            .matrix  .row  .label{
+                padding-left: 8px;
+                font-size: 15px;
+            }
+
+            .matrix input[type="radio"]{
+                width: 18px;
+                height: 18px;
+                margin: auto;
+                accent-color: var(--accent);
+            }
+
+            @media(max-width:720px){
+                .matrix  .header  .matrix  .row{
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+                .matrix  .header > *:nth-child(n+4), .matrix  .row > * :nth-child(n+4){
+                    display: none;
+                }
+            }
+
+            textarea{
+                min-height: 120px;
+                resize:vertical;
+            }
+
+            .submit-row{
+                margin-top: 18px;
+            }
+
+            button{
+                background: #fff;
+                border:1px solid var(--border);
+                padding: 10px  18px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 15px;
+            }
+
+            button .primary{
+                background: var(--accent);
+                color:white;
+                border-color: transparent;
+            }
+
+            .note{
+                font-size: 13px;
+                color: #666;
+                margin-bottom: 10px;
+            }
+
+            .small{
+                font-size: 13px;
+                color: #666;
+            }
+
+        </style>
+     </head>
+      
+     <body>
+      <div class="container"  role="main">
+        <h1> Customer Experience Survey</h1>
+
+        <form id="survey" action="#" method="post" autocomplete="on" novalidate>
+
+            <div class ="row name-row">
+                <div class = "col">
+                    <label for="firstName" class="required">First Name</label>
+                    <input id="first" name="firstName" type="text" placeholder="First" required>
+                    <div class="field-help">First</div>
+
+                    
+                </div>
+                <div class="col">
+                    <label for="last" class="visually-hidden" aria-hidden="true">last</label>
+                    <input id="last" name="lastName" type="text" placeholder="Last"required>
+                    <div class="field-help">Last</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 16px">
+                <label for="email" class="required">Email</label>
+                <input id="email" name="email" type="email" placeholder="saravanankrp17@dmail.com" required>
+            </div>
+
+            <div>
+                <label class="required">Your Experience</label>
+                <div class="stars" aria-hidden="false">
+                    <div class="star-rating" role="radiogroup" aria-label="Rate your overall experience">
+                        <input type="radio" id="star5" name="experience" value="5" required>
+                        <label for="star5" title="5 stars">&#9733</label>
+
+                        <input type="radio" id="star4" name="experience" value="4">
+                        <label for="star4" title="4 stars">&#9733</label>
+
+                        <input type="radio" id="star3" name="experience" value="3">
+                        <label for="star3" title="3 stars">&#9733</label>
+
+                        <input type="radio" id="star2" name="experience" value="2">
+                        <label for="star2" title="2 stars">&#9733</label>
+
+                        <input type="radio" id="star1" name="experience" value="1">
+                        <label for="star1" title="1 star">&#9733</label>
+                    </div>
+                </div>
+
+                <div class="field-help">overall,how would you rate your experience with us?</div>
+            </div>
+
+            <fieldset style="border:none;padding:0;margin-top:12px">
+                      
+             <legend class="required" style="font-weight: 700;margin-bottom: 8px">How satisfied are you with</legend>
+               <div class="matrix" role="group" aria-labelledby="satisfication-legend"></div>
+                <div class="header" aria-hidden="true"></div>
+
+                <div>
+                    <div style="text-align: center">Very Unsatisfied</div>
+                    <div style="text-align: center">Unsatisfied</div>
+                    <div style="text-align: center">Neutral</div>
+                    <div style="text-align: center">Satisfied</div>
+                    <div style="text-align: center">Very Satisfied</div>
+                </div>
+                    
+                 <div class="row">
+                    <div class="label">Purchase</div>
+                    <div><input type="radio" name="purchase" value="1" required aria-label= "Purchase very unsatisfied"></div>
+                    <div><input type="radio" name="purchase" value="2" required aria-label="Purchase unsatisfied"></div>
+                    <div><input type="radio" name="purchase" value="3" required aria-label="Purchase neutral"></div>
+                    <div><input type="radio" name="purchase" value="4" required aria-label="Purchase satisfied"></div>
+                    <div><input type="radio" name="purchase" value="5" required aria-label="Purchase very satisfied"></div>
+                 </div>
+                 
+                 
+                 <div class="row">
+                    <div class ="label">Service</div>
+                    <div><input type="radio" name="Service" value="1" required aria-label= "Service very unsatisfied"></div>
+                    <div><input type="radio" name="Service" value="2" required aria-label= "Service unsatisfied"></div>
+                    <div><input type="radio" name="Service" value="3" required aria-label= "Service neutral"></div>
+                    <div><input type="radio" name="Service" value="4" required aria-label= "Service satisfied"></div>
+                    <div><input type="radio" name="Service" value="5" required aria-label= "Service very satisfied"></div>
+                 </div>
+
+                 <div class="row">
+                    <div class ="label">Company Overall</div>
+                    <div><input type="radio" name="Company" value="1" required aria-label= "Company very unsatisfied"></div>
+                    <div><input type="radio" name="Company" value="2" required aria-label= "Company unsatisfied"></div>
+                    <div><input type="radio" name="Company" value="3" required aria-label= "Company neutral"></div>
+                    <div><input type="radio" name="Company" value="4" required aria-label= "Company satisfied"></div>
+                    <div><input type="radio" name="Company" value="5" required aria-label= "Company very satisfied"></div>
+                 </div>
+
+                 
+
+                 </div>
+                 </fieldset>
+
+                 <fieldset style="border: none;padding: 0;margin-top: 8px;">
+                    <legend class="required" style="font-weight: 700;margin-bottom: 8px"> Hpw lilely are you to</legend>
+                    <div class="matrix" role="group" aria-labelledby="likelyhood-legend">
+                    <div class="header" aria-hidden="true"></div>
+                    <div style="text-align: center">Very unlikely</div>
+                    <div style="text-align: center">Unlikely</div>
+                    <div style="text-align: center">Neutral</div>
+                    <div style="text-align: center">Likely</div>
+                    <div style="text-align: center">Very likely</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="label">Buy from us again</div>
+                        <div><input type="radio" name="buy_again" value="1"required></div>
+                        <div><input type="radio" name="buy_again" value="2"></div>
+                        <div><input type="radio" name="buy_again" value="3"></div>
+                        <div><input type="radio" name="buy_again" value="4"></div>
+                        <div><input type="radio" name="buy_again" value="5"></div>
+                    </div>
+
+                    <div class ="row">
+                        <div class="label">Recommend our product to others</div>
+                        <div><input type="radio" name="Recommend_product" value="1"required></div>
+                        <div><input type="radio" name="Recommend_product" value="2"></div>
+                        <div><input type="radio" name="Recommend_product" value="3"></div>
+                        <div><input type="radio" name="Recommend_product" value="4"></div>
+                        <div><input type="radio" name="Recommend_product" value="5"></div>
+                    </div>
+
+                    <div class ="row">
+                        <div class="label">Recommend our Company to others</div>
+                        <div><input type="radio" name="Recommend_company" value="1"required></div>
+                        <div><input type="radio" name="Recommend_company" value="2"></div>
+                        <div><input type="radio" name="Recommend_company" value="3"></div>
+                        <div><input type="radio" name="Recommend_company" value="4"></div>
+                        <div><input type="radio" name="Recommend_company" value="5"></div>
+                    </div>
+                 
+             
+                 </div>  
+                 
+                 </div> 
+                 </fieldset> 
+                 
+                 <div style="margin-top: 6px">
+                    <label for="comments">Additional commends or suggestions</label>
+                    <textarea id="commends" name="commends" placeholder="Write your thoughts here..."></textarea>
+                 </div>
+
+                 <div class="submit-row">
+                    <button type="submit" class="primary">Submit</button>
+                 </div>
+                
+        </form>
+      </div>
+
+      <script>
+        document.getElementById('survey').addEventListener('submit',function(e){
+            const exp = document.querySelectorAll('input[name="experience"]:checked');
+              if(!exp.length){
+                e.preventDefault();
+                document.getElementById('star1').focus();
+                alert('Please select the rating for "Your Experience".');
+              }
+        });
+      </script>
+     </body>
+</html>    
+     
+      
+
+
+
+        
+            
+              
+               
+
+            

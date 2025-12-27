@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial scale=1.0" />
+        <title> Customer Experience Survey </title>
+        <style>
+            :root{
+                --access:#e29b5a;
+                --muted:#f3f3f3;
+                --border:#ddd;
+                --text:#222;
+                --radius:6px;
+                --gap:18px;
+                font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helsvetica Neue",Arial;
+            }
+            body{
+                margin: 20px;
+                color: var(--text);
+                background: white;
+            }
+            .container{
+                max-width: 900px;
+                margin: 0 auto;
+                border: 1px solid var(--border);
+                padding: 22px;
+                box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+            }
+
+            h1{
+                font-size: 20px;
+                margin: 0 0 18px 0;
+            }
+            label.required::after{
+               content : "*";
+               color: #c0392b
+            }
+
+            .row{
+                display: flex;
+                gap:12px;
+                align-items:flex-start;
+                margin-bottom: 14px;
+            }
+
+            .col{
+                flex:1;
+                min-width: 0;
+            }
+            input[type="text"],
+            input[type="email"], 
+            textarea{
+                
+                box-sizing: border-box;
+                width:100%;
+                padding: 10px 12px;
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                background: white;
+                font-size: 14px;
+            }
+
+            .name-row  .col:first-child{
+                flex :0 0 62%
+            }
+
+            .name-row  .col:last-child{
+                flex:0 0 34%
+            }
+
+            .field-help{
+                font-size:12px;
+                color: #666;
+                margin-top: 6px;
+            }
+
+
+            .stars{
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin: 6px 0 18px 0;
+            }
+
+            .star-rating{
+                display: inline-block;
+                unicode-bidi: bidi-override;
+                direction: rtl;
+                font-size: 26px;
+            }
+
+            .star-rating input{
+                display: none;
+            }
+
+            .star-rating label{
+                display: inline-block;
+                cursor: pointer;
+                color:#ddd;
+                padding: 04px;
+                user-select:none;
+            }
+
+            .star-rating input:checked ~ label,.star-rating label:hover,.star-rating label:hover ~ label{
+                color:var(--accent);
+            }
+
+            .matrix{
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 18px;
+                border: 1px solid transparent;
+            }
+
+            .matrix  .header{
+                display: grid;
+                grid-template-columns: 1fr repeat(5,120px);
+                gap: 8px;
+                align-items: center;
+                padding: 12px 12px;
+                background: transparent;
+                font-weight: 600;
+                font-size: 14px;
+                color: #555;
+
+            }
+
+            .matrix  ,row{
+                display: grid;
+                grid-template-columns: 1fr repeat(5,120px);
+                align-items: center;
+                gap: 8px;
+                padding: 12px;
+                background: linear-gradient(#fafafa,#f6f6f6);
+                border-top: 1px solid rgba(0,0,0,0.03);
+
+            }
+
+            .matrix  .row:nth-child(odd){
+                background: linear-gradient(#fff,#fbfbfb);
+            }
+            .matrix  .row  .label{
+                padding-left: 8px;
+                font-size: 15px;
+            }
+
+            .matrix input[type="radio"]{
+                width: 18px;
+                height: 18px;
+                margin: auto;
+                accent-color: var(--accent);
+            }
+
+            @media(max-width:720px){
+                .matrix  .header  .matrix  .row{
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+                .matrix  .header > *:nth-child(n+4), .matrix  .row > * :nth-child(n+4){
+                    display: none;
+                }
+            }
+
+            textarea{
+                min-height: 120px;
+                resize:vertical;
+            }
+
+            .submit-row{
+                margin-top: 18px;
+            }
+
+            button{
+                background: #fff;
+                border:1px solid var(--border);
+                padding: 10px  18px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 15px;
+            }
+
+            button .primary{
+                background: var(--accent);
+                color:white;
+                border-color: transparent;
+            }
+
+            .note{
+                font-size: 13px;
+                color: #666;
+                margin-bottom: 10px;
+            }
+
+            .small{
+                font-size: 13px;
+                color: #666;
+            }
+
+        </style>
+     </head>
+
+     <body>
+     
+
+
+
+        
+            
+              
+               
+
+            
